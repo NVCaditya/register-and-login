@@ -1,31 +1,64 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_sqlite/components/msg_list.dart';
+import 'package:flutter_sqlite/pages/login/login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 void main() => runApp(HomePage());
 
 class HomePage extends StatelessWidget {
+ final MssgList mssg=MssgList();
+
   @override
   Widget build(BuildContext context) {
 
 
-  return new Scaffold(
-      body: Center(
-        child: Container(
-          padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-          color: Colors.teal),
-          child: Text('welcome',style: TextStyle(
-            fontSize: 40,
-            fontWeight: FontWeight.w800
-          ),
+  return Scaffold(
+    drawer: Drawer(
+      child: Container(
+        margin: EdgeInsets.only(top: 30,left: 5),
+        child: GestureDetector(child: Text('LOG OUT',style: TextStyle(
+          fontSize: 25,
+          fontWeight: FontWeight.w500,
+        ),),
+                onTap: ()async
+               { SharedPreferences prefs = await SharedPreferences.getInstance();
+                 prefs.remove('email');
+    Navigator.pushReplacement(context,
+    MaterialPageRoute(builder: (BuildContext ctx) => LoginPage()));
+  },
 
-          ),
+
         ),
       ),
-    );
+    ),
+    appBar: AppBar(
+
+      backgroundColor: Colors.deepPurple,
+      title: Text('Inbox'),
+      actions: [
+
+        IconButton(onPressed: (){}, icon: Icon(Icons.search)),
+        IconButton(onPressed: (){}, icon: Icon(Icons.more_vert))
+      ],
+
+    ),
+
+      body: ListView(
+      children: mssg.mssgList,
+      ),
+
+
+
+
+    floatingActionButton: FloatingActionButton(
+      onPressed: (){},
+      backgroundColor: Colors.deepPurple,
+      child: Icon(Icons.add),
+    ),
+      );
   }
 }
 

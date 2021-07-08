@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sqlite/data/database-helper.dart';
 import 'package:flutter_sqlite/models/user.dart';
+import 'package:flutter_sqlite/pages/home_page.dart';
 import 'package:flutter_sqlite/pages/login/login_presenter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -26,7 +28,11 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
     Navigator.of(context).pushNamed("/register");
   }
 
-  void _submit() {
+  void _submit() async{SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setString('email', _presenter.toString());
+
+  // Navigator.pushReplacement(context,
+  //     MaterialPageRoute(builder: (BuildContext _ctx)=>HomePage()));
     final form = formKey.currentState;
 
     if (form.validate()) {
