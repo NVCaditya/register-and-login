@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sqlite/components/msg_list.dart';
 import 'package:flutter_sqlite/pages/login/login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'profile_page.dart';
 
 
 void main() => runApp(HomePage());
@@ -17,21 +18,37 @@ class HomePage extends StatelessWidget {
 
   return Scaffold(
     drawer: Drawer(
-      child: Container(
-        margin: EdgeInsets.only(top: 30,left: 5),
-        child: GestureDetector(child: Text('LOG OUT',style: TextStyle(
-          fontSize: 25,
-          fontWeight: FontWeight.w500,
-        ),),
-                onTap: ()async
-               { SharedPreferences prefs = await SharedPreferences.getInstance();
-                 prefs.remove('email');
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 30,left: 5),
+            child: GestureDetector(
+              child: Text('PROFILE',style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.w500,
+              ),),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext ctx)=> ProfilePage() ));
+              },
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 30,left: 5),
+            child: GestureDetector(child: Text('LOG OUT',style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w500,
+            ),),
+                    onTap: ()async
+                   { SharedPreferences prefs = await SharedPreferences.getInstance();
+                     prefs.remove('email');
     Navigator.pushReplacement(context,
     MaterialPageRoute(builder: (BuildContext ctx) => LoginPage()));
   },
 
 
-        ),
+            ),
+          ),
+        ],
       ),
     ),
     appBar: AppBar(
