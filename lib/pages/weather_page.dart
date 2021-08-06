@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart';
+
 
 import 'dart:convert';
 
@@ -15,19 +17,34 @@ class _WeatherPageState extends State<WeatherPage> {
   var temperature;
   var condition = 'hail';
   var city;
+  var latitude;
+  var longitude;
 
 @override
   void initState() {
 
     super.initState();
-    getData();
+
+    getLocation();
+
 
   }
+  void getLocation() async{
 
+
+    Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
+
+    latitude = position.latitude.toString();
+    longitude = position.longitude.toString();
+    print(longitude);
+    print(latitude);
+    getData();
+  }
 
   void getData()async{
-    Response response = await get('http://api.openweathermap.org/data/2.5/weather?lat=17&lon=81&appid=04a2cee74cd99618dd3dfb2f06de8175');
-    String data = response.body;
+  String url = 'http://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=04a2cee74cd99618dd3dfb2f06de8175';
+    Response response = await get(url);
+    dynamic data = jsonDecode(response.body);
 
 
     // print(data);
@@ -36,9 +53,9 @@ class _WeatherPageState extends State<WeatherPage> {
 setState(() {
 
 
-      temperature = jsonDecode(data)['main']['temp'];
-      condition = jsonDecode(data)['weather'][0]['description'];
-      city = jsonDecode(data)['name'];
+   temperature = data['main']['temp'];
+   condition = data['weather'][0]['description'];
+   city = data['name'];
 
 
 });

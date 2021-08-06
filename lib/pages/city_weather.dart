@@ -5,9 +5,9 @@ import 'package:http/http.dart';
 import 'dart:convert';
 
 class CityWeatherPage extends StatefulWidget  {
- var cityname = "hii";
+ final String cityname ;
 
- CityWeatherPage(this.cityname);
+ CityWeatherPage({this.cityname});
 
 
 
@@ -19,7 +19,7 @@ class _CityWeatherPageState extends State<CityWeatherPage> {
   var temperature;
   var condition = 'hail';
   var city;
-  var cityname;
+
 
   @override
   void initState() {
@@ -31,7 +31,8 @@ class _CityWeatherPageState extends State<CityWeatherPage> {
 
 
   void getData()async{
-    Response response = await get('https://api.openweathermap.org/data/2.5/weather?q=Cambridge&appid=04a2cee74cd99618dd3dfb2f06de8175');
+    var cityname = widget.cityname;
+    Response response = await get('https://api.openweathermap.org/data/2.5/weather?q=$cityname&appid=04a2cee74cd99618dd3dfb2f06de8175');
     String data = response.body;
 
 
@@ -44,7 +45,7 @@ class _CityWeatherPageState extends State<CityWeatherPage> {
       temperature = jsonDecode(data)['main']['temp'];
       condition = jsonDecode(data)['weather'][0]['description'];
       city = jsonDecode(data)['name'];
-      cityname= this.cityname;
+      // cityname= city;
 print(cityname);
 
 

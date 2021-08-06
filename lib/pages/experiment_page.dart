@@ -26,32 +26,32 @@ class _experimentPageState extends State<experimentPage> {
    Response responsenew = await  get ("https://www.universal-tutorial.com/api/getaccesstoken",
        headers: {
          "Accept": "application/json",
-         "api-token": "9o2hoCHrInlupPe9KFPbUxvBuK_Z_52ETnMDcP_yK9v0ehTW-McBPDJHkbPLMlvpkU0",
-         "user-email": "aaaaditya@gmail.com"
+         "api-token": "gGGbRtAH7OxRdWkGG12FcrqVO4nm6PKNjQPJbzWd10pKPCYxL-QIiJr0ajROjO27Q4k",
+         "user-email": "vikram@gmail.com"
        } );
 
 
-   Response response = await  get ("https://www.universal-tutorial.com/api/getaccesstoken",
-       headers: {
-         "Accept": "application/json",
-         "api-token": "lxSg-eDCcg8Loj2xynYvnjzSt9wjIGu4gTHRqk-ZyyvVvR_aERmGO_Syo6Lh-s0QnFo",
-         "user-email": "aaditya@gmail.com"
-       } );
+   // Response response = await  get ("https://www.universal-tutorial.com/api/getaccesstoken",
+   //     headers: {
+   //       "Accept": "application/json",
+   //       "api-token": "lxSg-eDCcg8Loj2xynYvnjzSt9wjIGu4gTHRqk-ZyyvVvR_aERmGO_Syo6Lh-s0QnFo",
+   //       "user-email": "aaditya@gmail.com"
+   //     } );
    Response res = await get ("https://www.universal-tutorial.com/api/countries/",
    headers: ({
-     "Authorization": "aditya eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJhYWFhZGl0eWFAZ21haWwuY29tIiwiYXBpX3Rva2VuIjoiOW8yaG9DSHJJbmx1cFBlOUtGUGJVeHZCdUtfWl81MkVUbk1EY1BfeUs5djBlaFRXLU1jQlBESkhrYlBMTWx2cGtVMCJ9LCJleHAiOjE2MjgyNDg4MDh9.Fv8fUilQc_s9Sk0eazYjGk6ODTcpBEqZVH1Ik8J_Egs",
+     "Authorization": "aditya eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ2aWtyYW1AZ21haWwuY29tIiwiYXBpX3Rva2VuIjoiZ0dHYlJ0QUg3T3hSZFdrR0cxMkZjcnFWTzRubTZQS05qUVBKYnpXZDEwcEtQQ1l4TC1RSWlKcjBhalJPak8yN1E0ayJ9LCJleHAiOjE2MjgzMzkwNTd9.X-FeJBwKHRYb8h5Hyup_V8OPAJTlngDe3Tbkk8cWzsU",
      "Accept": "application/json"
    }),
    );
    Response resp = await get ("https://www.universal-tutorial.com/api/states/India",
      headers: ({
-       "Authorization": "aditya eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJhYWFhZGl0eWFAZ21haWwuY29tIiwiYXBpX3Rva2VuIjoiOW8yaG9DSHJJbmx1cFBlOUtGUGJVeHZCdUtfWl81MkVUbk1EY1BfeUs5djBlaFRXLU1jQlBESkhrYlBMTWx2cGtVMCJ9LCJleHAiOjE2MjgyNDg4MDh9.Fv8fUilQc_s9Sk0eazYjGk6ODTcpBEqZVH1Ik8J_Egs",
+       "Authorization": "aditya eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ2aWtyYW1AZ21haWwuY29tIiwiYXBpX3Rva2VuIjoiZ0dHYlJ0QUg3T3hSZFdrR0cxMkZjcnFWTzRubTZQS05qUVBKYnpXZDEwcEtQQ1l4TC1RSWlKcjBhalJPak8yN1E0ayJ9LCJleHAiOjE2MjgzMzkwNTd9.X-FeJBwKHRYb8h5Hyup_V8OPAJTlngDe3Tbkk8cWzsU",
        "Accept": "application/json"
      }),
    );
    Response respo = await get ("https://www.universal-tutorial.com/api/cities/Alaska",
      headers: ({
-       "Authorization": "aditya eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJhYWFhZGl0eWFAZ21haWwuY29tIiwiYXBpX3Rva2VuIjoiOW8yaG9DSHJJbmx1cFBlOUtGUGJVeHZCdUtfWl81MkVUbk1EY1BfeUs5djBlaFRXLU1jQlBESkhrYlBMTWx2cGtVMCJ9LCJleHAiOjE2MjgyNDg4MDh9.Fv8fUilQc_s9Sk0eazYjGk6ODTcpBEqZVH1Ik8J_Egs",
+       "Authorization": "aditya eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ2aWtyYW1AZ21haWwuY29tIiwiYXBpX3Rva2VuIjoiZ0dHYlJ0QUg3T3hSZFdrR0cxMkZjcnFWTzRubTZQS05qUVBKYnpXZDEwcEtQQ1l4TC1RSWlKcjBhalJPak8yN1E0ayJ9LCJleHAiOjE2MjgzMzkwNTd9.X-FeJBwKHRYb8h5Hyup_V8OPAJTlngDe3Tbkk8cWzsU",
        "Accept": "application/json"
      }),
    );
@@ -61,7 +61,7 @@ class _experimentPageState extends State<experimentPage> {
    List CountryList;
 
     countries = res.body ;
-   var data = response.body;
+   // var data = response.body;
    var states = resp.body;
    var city = respo.body;
    // temper = jsonDecode(countries)['country_name'];
@@ -71,7 +71,7 @@ class _experimentPageState extends State<experimentPage> {
    // });
      cityname=jsonDecode(city);
 print(responsenew.body);
-   print(data);
+   // print(data);
    print(countries);
    print(states);
    print(city);

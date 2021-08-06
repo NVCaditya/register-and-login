@@ -24,8 +24,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
  final MssgList mssg=MssgList();
- double latitude;
- double longitude;
+ var latitude;
+ var longitude;
  var temperature;
  var condition;
  var city;
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
               onTap: (){
                 // showModalBottomSheet(context: context, builder: buildBottomSheet);
                 getLocation();
-                 getData();
+
 
                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext ctx)=> WeatherPage() ));
               },
@@ -165,25 +165,13 @@ class _HomePageState extends State<HomePage> {
 
    Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
 
-    latitude = position.latitude;
-    longitude = position.longitude;
+    latitude = position.latitude.toString();
+    longitude = position.longitude.toString();
    print(longitude);
    print(latitude);
 
  }
- void getData()async{
-  Response response = await get('http://api.openweathermap.org/data/2.5/weather?lat=17&lon=81&appid=04a2cee74cd99618dd3dfb2f06de8175');
-String data = response.body;
-  // print(data);
-  // var all =jsonDecode(data);
-  // print(response.body);
-  var temperature = jsonDecode(data)['main']['temp'];
-  var condition = jsonDecode(data)['weather'][0]['description'];
-  var city = jsonDecode(data)['name'];
 
-
-
-}
  // Future<Widget> buildBottomSheet(BuildContext context)async{
  //   Response response = await get('http://api.openweathermap.org/data/2.5/weather?lat=17&lon=81&appid=04a2cee74cd99618dd3dfb2f06de8175');
  //   String data = response.body;

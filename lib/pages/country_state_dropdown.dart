@@ -16,7 +16,7 @@ class CountryDropdown extends StatelessWidget {
   var temper;
   var countryname;
   var statename;
-  var cityname = "it worked";
+  var cityname;
 
   List stateList;
   List cityList;
@@ -208,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           FlatButton(onPressed: (
               ){
-            Navigator.push(context, MaterialPageRoute(builder: (BuildContext ctx)=> CityWeatherPage(cityname) ));
+            Navigator.push(context, MaterialPageRoute(builder: (BuildContext ctx)=> CityWeatherPage(cityname:cityname) ));
             // Navigator.push(context, MaterialPageRoute(builder: (BuildContext=>CityWeatherPage())))
           }, child: Text("Submit"), color: Colors.green,)
         ],
@@ -227,26 +227,26 @@ class _MyHomePageState extends State<MyHomePage> {
     //     } );
     Response res = await get ("https://www.universal-tutorial.com/api/countries/",
       headers: ({
-        "Authorization": "aditya eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJhYWFkaXR5YUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiJLSEJLRFlMaUx3SWdqWkRjU3JlLVJCVDhUMUV2anhSamxJVzBDQUpJdy00YmJ2YjNwR3JRcmtad3Exd2IxZUhxelR3In0sImV4cCI6MTYyODE1NTM0NX0.FM_4uzFR72UTioMVwUCHLIEh3yQGPDFptFLo44HoU-A",
+        "Authorization": "aditya eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ2aWtyYW1AZ21haWwuY29tIiwiYXBpX3Rva2VuIjoiZ0dHYlJ0QUg3T3hSZFdrR0cxMkZjcnFWTzRubTZQS05qUVBKYnpXZDEwcEtQQ1l4TC1RSWlKcjBhalJPak8yN1E0ayJ9LCJleHAiOjE2MjgzMzkwNTd9.X-FeJBwKHRYb8h5Hyup_V8OPAJTlngDe3Tbkk8cWzsU",
         "Accept": "application/json"
       }),
     );
     Response resp = await get ("https://www.universal-tutorial.com/api/states/$countryname",
       headers: ({
-        "Authorization": "aditya eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJhYWFkaXR5YUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiJLSEJLRFlMaUx3SWdqWkRjU3JlLVJCVDhUMUV2anhSamxJVzBDQUpJdy00YmJ2YjNwR3JRcmtad3Exd2IxZUhxelR3In0sImV4cCI6MTYyODE1NTM0NX0.FM_4uzFR72UTioMVwUCHLIEh3yQGPDFptFLo44HoU-A",
+        "Authorization": "aditya eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ2aWtyYW1AZ21haWwuY29tIiwiYXBpX3Rva2VuIjoiZ0dHYlJ0QUg3T3hSZFdrR0cxMkZjcnFWTzRubTZQS05qUVBKYnpXZDEwcEtQQ1l4TC1RSWlKcjBhalJPak8yN1E0ayJ9LCJleHAiOjE2MjgzMzkwNTd9.X-FeJBwKHRYb8h5Hyup_V8OPAJTlngDe3Tbkk8cWzsU",
         "Accept": "application/json"
       }),
     );
     Response respo = await get ("https://www.universal-tutorial.com/api/cities/$statename",
       headers: ({
-        "Authorization": "aditya eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJhYWFkaXR5YUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiJLSEJLRFlMaUx3SWdqWkRjU3JlLVJCVDhUMUV2anhSamxJVzBDQUpJdy00YmJ2YjNwR3JRcmtad3Exd2IxZUhxelR3In0sImV4cCI6MTYyODE1NTM0NX0.FM_4uzFR72UTioMVwUCHLIEh3yQGPDFptFLo44HoU-A",
+        "Authorization": "aditya eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ2aWtyYW1AZ21haWwuY29tIiwiYXBpX3Rva2VuIjoiZ0dHYlJ0QUg3T3hSZFdrR0cxMkZjcnFWTzRubTZQS05qUVBKYnpXZDEwcEtQQ1l4TC1RSWlKcjBhalJPak8yN1E0ayJ9LCJleHAiOjE2MjgzMzkwNTd9.X-FeJBwKHRYb8h5Hyup_V8OPAJTlngDe3Tbkk8cWzsU",
         "Accept": "application/json"
       }),
     );
 
 
 
-print(res.body);
+// print(res.body);
 
     countryList = jsonDecode(res.body) ;
     stateList = jsonDecode(resp.body) ;
