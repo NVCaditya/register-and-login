@@ -49,8 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Icon(Icons.camera_alt,size: 40,)),
                   ],
                 )
-                //
-                //
+
         ],
       ),
     );

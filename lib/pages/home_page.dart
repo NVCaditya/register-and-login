@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sqlite/components/msg_list.dart';
+import 'package:flutter_sqlite/pages/country_state_dropdown.dart';
+import 'package:flutter_sqlite/pages/experiment_page.dart';
 import 'package:flutter_sqlite/pages/login/login_page.dart';
 // import 'package:get/get.dart';
 import 'package:http/http.dart';
@@ -10,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'profile_page.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:convert';
+import 'weather_page.dart';
 
 void main() => runApp(HomePage());
 
@@ -23,6 +26,10 @@ class _HomePageState extends State<HomePage> {
  final MssgList mssg=MssgList();
  double latitude;
  double longitude;
+ var temperature;
+ var condition;
+ var city;
+
  final _auth = FirebaseAuth.instance;
  User loggedInUser;
 
@@ -68,15 +75,40 @@ class _HomePageState extends State<HomePage> {
           Container(
             margin: EdgeInsets.only(top: 30,left: 5),
             child: GestureDetector(
+              child: Text('select country UI',style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.w500,
+              ),),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext ctx)=> CountryDropdown() ));
+              },
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 30,left: 5),
+            child: GestureDetector(
+              child: Text('Select location',style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.w500,
+              ),),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext ctx)=> experimentPage() ));
+              },
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 30,left: 5),
+            child: GestureDetector(
               child: Text('LOCATION',style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.w500,
               ),),
               onTap: (){
+                // showModalBottomSheet(context: context, builder: buildBottomSheet);
                 getLocation();
                  getData();
 
-                // Navigator.push(context, MaterialPageRoute(builder: (BuildContext ctx)=> ProfilePage() ));
+                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext ctx)=> WeatherPage() ));
               },
             ),
           ),
@@ -91,6 +123,7 @@ class _HomePageState extends State<HomePage> {
                      prefs.remove('email');
     Navigator.pushReplacement(context,
     MaterialPageRoute(builder: (BuildContext ctx) => LoginPage()));
+
   },
 
 
@@ -139,12 +172,25 @@ class _HomePageState extends State<HomePage> {
 
  }
  void getData()async{
-  Response response = await get('http://api.openweathermap.org/data/2.5/weather?lat=32&lon=51&appid=04a2cee74cd99618dd3dfb2f06de8175');
+  Response response = await get('http://api.openweathermap.org/data/2.5/weather?lat=17&lon=81&appid=04a2cee74cd99618dd3dfb2f06de8175');
 String data = response.body;
   // print(data);
-  var all =jsonDecode(data);
-  print(all);
+  // var all =jsonDecode(data);
+  // print(response.body);
+  var temperature = jsonDecode(data)['main']['temp'];
+  var condition = jsonDecode(data)['weather'][0]['description'];
+  var city = jsonDecode(data)['name'];
+
+
+
 }
+ // Future<Widget> buildBottomSheet(BuildContext context)async{
+ //   Response response = await get('http://api.openweathermap.org/data/2.5/weather?lat=17&lon=81&appid=04a2cee74cd99618dd3dfb2f06de8175');
+ //   String data = response.body;
+ //   var condition = jsonDecode(data)['weather'][0]['description'];
+ //   return Container(
+ //     child: Text(''),
+ //   );}
 }
 
 
